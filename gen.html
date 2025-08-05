@@ -2,35 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>You’re Awesome! 🌈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>You’re Awesome! 🌈</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    body.night-mode {
+      background: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    /* PAGE 1 */
+    .section {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: relative;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+      background-size: 400% 400%;
+      animation: animatedBG 15s ease infinite;
+      overflow: hidden;
+      text-align: center;
+      color: #fff;
+    }
+
+    body.night-mode .section {
+      background: linear-gradient(-45deg, #232526, #414345, #2c3e50, #000000);
+      color: #ffffff;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/cubes.png');
+      opacity: 0.2;
+      z-index: 1;
+    }
+
+    .section h1 {
+      font-size: 4rem;
+      padding: 0 20px;
+      z-index: 2;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      color: inherit;
+    }
+
+    .start-btn {
+      padding: 16px 36px;
+      font-size: 1.5rem;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      margin-top: 30px;
+      z-index: 2;
+      transition: background 0.3s ease;
+    }
+
+    .start-btn:hover {
+      background: #ff1493;
+    }
+
+    @keyframes animatedBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* PAGE 2 */
+    #complimentPage {
       background: linear-gradient(to right, #ffdde1, #ee9ca7);
       transition: background 0.8s ease, color 0.8s ease;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      position: relative;
+      font-family: 'Quicksand', sans-serif;
       color: #222;
+      position: relative;
     }
 
-    .night-mode {
+    body.night-mode #complimentPage {
       background: linear-gradient(to right, #232526, #414345);
-      color: #fff;
+      color: #f0f0f0;
     }
 
     .theme-toggle {
-      position: absolute;
+      position: fixed;
       top: 20px;
       right: 20px;
       padding: 10px 20px;
@@ -39,9 +120,9 @@
       background: linear-gradient(45deg, #ff4081, #ff80ab);
       color: white;
       cursor: pointer;
-      font-size: 1rem;
+      font-size: 1.3rem;
       box-shadow: 0 0 12px #ff80ab;
-      z-index: 3;
+      z-index: 999;
     }
 
     .container {
@@ -52,32 +133,31 @@
       max-width: 700px;
       min-height: 500px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      color: #222;
-    }
-
-    .night-mode .container {
-      color: #fff;
-    }
-
-    h1 {
-      font-size: 2.5rem;
       color: inherit;
+      z-index: 1;
+    }
+
+    .container h1 {
+      font-size: 3rem;
       text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
       margin-bottom: 10px;
-    }
-
-    .compliment-box, #quote {
       color: inherit;
-      margin: 10px 0;
     }
 
     .compliment-box {
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       padding: 20px;
       min-height: 100px;
       border-radius: 20px;
       animation: fadeIn 0.5s ease forwards;
+      color: inherit;
+    }
+
+    #quote {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: inherit;
+      margin-top: 10px;
     }
 
     @keyframes fadeIn {
@@ -87,8 +167,8 @@
 
     button {
       margin: 10px 5px;
-      padding: 10px 25px;
-      font-size: 1rem;
+      padding: 14px 28px;
+      font-size: 1.3rem;
       border-radius: 25px;
       border: none;
       background: linear-gradient(45deg, #ff4081, #ff80ab);
@@ -143,6 +223,7 @@
       border-radius: 15px;
       cursor: pointer;
       transition: background 0.3s ease;
+      font-size: 1.1rem;
     }
 
     .favorites-list li:hover {
@@ -158,8 +239,8 @@
     }
 
     .main-button button {
-      font-size: 1.2rem;
-      padding: 14px 30px;
+      font-size: 1.5rem;
+      padding: 16px 36px;
     }
 
     .extra-buttons {
@@ -169,13 +250,12 @@
       flex-wrap: wrap;
     }
 
-    /* 🎉 Welcome Heading */
     .welcome-heading {
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 1.5rem;
+      font-size: 2rem;
       background: rgba(255, 255, 255, 0.4);
       backdrop-filter: blur(10px);
       padding: 10px 25px;
@@ -184,136 +264,146 @@
       z-index: 2;
     }
 
-    .night-mode .welcome-heading {
+    body.night-mode .welcome-heading {
       background: rgba(0, 0, 0, 0.4);
     }
   </style>
 </head>
 <body>
 
-<h2 class="welcome-heading">👋 Welcome to the AI Compliment Generator!</h2>
-
-<button class="theme-toggle" onclick="toggleTheme()">🌓</button>
-<div class="floating-emojis" id="emojis-container"></div>
-
-<div class="container">
-  <h1>You’re Awesome! 💖</h1>
-  <div class="compliment-box" id="compliment">Click below to brighten your day ✨</div>
-  <div id="quote"><em></em></div>
-
-  <div class="btn-wrap">
-    <div class="main-button">
-      <button onclick="showCompliment()">🎉 Cheer Me Up</button>
-    </div>
-    <div class="extra-buttons">
-      <button onclick="saveFavorite()">💾 Save</button>
-      <button onclick="toggleFavorites()">💖 Favorites</button>
-    </div>
+  <!-- PAGE 1 -->
+  <div class="section" id="startPage">
+    <h1>🌟 Welcome to the AI Compliment Generator!</h1>
+    <a href="#complimentPage">
+      <button class="start-btn">Start Complimenting!</button>
+    </a>
   </div>
 
-  <div class="favorites-list" id="favoritesList" style="display:none;"></div>
-</div>
+  <!-- PAGE 2 -->
+  <section id="complimentPage">
+    <h2 class="welcome-heading">👋 Welcome to the AI Compliment Generator!</h2>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    <div class="floating-emojis" id="emojis-container"></div>
 
-<audio id="sound" src="https://www.fesliyanstudios.com/play-mp3/6683" preload="auto"></audio>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <div class="container">
+      <h1>You’re Awesome! 💖</h1>
+      <div class="compliment-box" id="compliment">Click below to brighten your day ✨</div>
+      <div id="quote"><em></em></div>
 
-<script>
-  const compliments = {
-    default: [
-      "You’re glowing with kindness ✨", "You’re a walking sunshine ☀️",
-      "Your smile could light up galaxies 🌌", "You're pure magic 🪄", "You make the world better 💖"
-    ]
-  };
+      <div class="btn-wrap">
+        <div class="main-button">
+          <button onclick="showCompliment()">🎉 Cheer Me Up</button>
+        </div>
+        <div class="extra-buttons">
+          <button onclick="saveFavorite()">💾 Save</button>
+          <button onclick="toggleFavorites()">💖 Favorites</button>
+        </div>
+      </div>
 
-  const quotes = [
-    "The sun will rise, and we will try again – unknown",
-    "Be the energy you want to attract ✨",
-    "You are magic, don't you forget that 🌙",
-    "Even the moon needs the darkness to shine 🌑"
-  ];
+      <div class="favorites-list" id="favoritesList" style="display:none;"></div>
+    </div>
 
-  let currentCompliment = "";
-  let favoritesVisible = false;
+    <audio id="sound" src="https://www.fesliyanstudios.com/play-mp3/6683" preload="auto"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  function showCompliment() {
-    const moodList = compliments.default;
-    currentCompliment = moodList[Math.floor(Math.random() * moodList.length)];
+    <script>
+      const compliments = {
+        default: [
+          "You’re glowing with kindness ✨", "You’re a walking sunshine ☀️",
+          "Your smile could light up galaxies 🌌", "You're pure magic 🪄", "You make the world better 💖"
+        ]
+      };
 
-    const box = document.getElementById("compliment");
-    box.textContent = currentCompliment;
-    box.style.animation = 'none';
-    void box.offsetWidth;
-    box.style.animation = 'fadeIn 0.6s ease forwards';
+      const quotes = [
+        "The sun will rise, and we will try again – unknown",
+        "Be the energy you want to attract ✨",
+        "You are magic, don't you forget that 🌙",
+        "Even the moon needs the darkness to shine 🌑"
+      ];
 
-    document.getElementById("sound").play();
-    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-    burstEmojis();
-    showDailyQuote();
-  }
+      let currentCompliment = "";
+      let favoritesVisible = false;
 
-  function burstEmojis() {
-    const emojiList = ['💖','✨','🌈','🌟','💫','🎉','🥰','😄'];
-    const container = document.getElementById("emojis-container");
-    container.innerHTML = '';
+      function showCompliment() {
+        const moodList = compliments.default;
+        currentCompliment = moodList[Math.floor(Math.random() * moodList.length)];
 
-    for (let i = 0; i < 20; i++) {
-      const emoji = document.createElement('div');
-      emoji.classList.add('emoji');
-      emoji.style.left = Math.random() * 100 + 'vw';
-      emoji.style.top = Math.random() * 100 + 'vh';
-      emoji.style.fontSize = `${Math.random() * 2 + 1}rem`;
-      emoji.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
-      emoji.style.animationDuration = `${Math.random() * 3 + 4}s`;
-      container.appendChild(emoji);
-    }
-  }
+        const box = document.getElementById("compliment");
+        box.textContent = currentCompliment;
+        box.style.animation = 'none';
+        void box.offsetWidth;
+        box.style.animation = 'fadeIn 0.6s ease forwards';
 
-  function saveFavorite() {
-    if (!currentCompliment) return;
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    if (!favorites.includes(currentCompliment)) {
-      favorites.push(currentCompliment);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      alert("Compliment saved! 💖");
-    } else {
-      alert("Already saved 💾");
-    }
-  }
+        document.getElementById("sound").play();
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        burstEmojis();
+        showDailyQuote();
+      }
 
-  function toggleFavorites() {
-    const list = document.getElementById("favoritesList");
-    favoritesVisible = !favoritesVisible;
-    if (favoritesVisible) {
-      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-      list.innerHTML = favorites.length
-        ? "<ul>" + favorites.map((c, i) => `<li ondblclick="removeFavorite(${i})">${c}</li>`).join('') + "</ul>"
-        : "No favorites yet 😢";
-      list.style.display = "block";
-    } else {
-      list.style.display = "none";
-    }
-  }
+      function burstEmojis() {
+        const emojiList = ['💖','✨','🌈','🌟','💫','🎉','🥰','😄'];
+        const container = document.getElementById("emojis-container");
+        container.innerHTML = '';
 
-  function removeFavorite(index) {
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    favorites.splice(index, 1);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-    toggleFavorites(); // refresh list
-  }
+        for (let i = 0; i < 20; i++) {
+          const emoji = document.createElement('div');
+          emoji.classList.add('emoji');
+          emoji.style.left = Math.random() * 100 + 'vw';
+          emoji.style.top = Math.random() * 100 + 'vh';
+          emoji.style.fontSize = `${Math.random() * 2 + 1}rem`;
+          emoji.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+          emoji.style.animationDuration = `${Math.random() * 3 + 4}s`;
+          container.appendChild(emoji);
+        }
+      }
 
-  function toggleTheme() {
-    document.body.classList.toggle('night-mode');
-  }
+      function saveFavorite() {
+        if (!currentCompliment) return;
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        if (!favorites.includes(currentCompliment)) {
+          favorites.push(currentCompliment);
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          alert("Compliment saved! 💖");
+        } else {
+          alert("Already saved 💾");
+        }
+      }
 
-  function showDailyQuote() {
-    const dailyQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    document.getElementById("quote").innerHTML = `<em>"${dailyQuote}"</em>`;
-  }
+      function toggleFavorites() {
+        const list = document.getElementById("favoritesList");
+        favoritesVisible = !favoritesVisible;
+        if (favoritesVisible) {
+          let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+          list.innerHTML = favorites.length
+            ? "<ul>" + favorites.map((c, i) => `<li ondblclick="removeFavorite(${i})">${c}</li>`).join('') + "</ul>"
+            : "No favorites yet 😢";
+          list.style.display = "block";
+        } else {
+          list.style.display = "none";
+        }
+      }
 
-  window.onload = () => {
-    showDailyQuote();
-  };
-</script>
+      function removeFavorite(index) {
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        favorites.splice(index, 1);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        toggleFavorites();
+      }
 
+      function toggleTheme() {
+        document.body.classList.toggle('night-mode');
+      }
+
+      function showDailyQuote() {
+        const dailyQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById("quote").innerHTML = `<em>"${dailyQuote}"</em>`;
+      }
+
+      window.onload = () => {
+        showDailyQuote();
+      };
+    </script>
+  </section>
 </body>
 </html>
+
